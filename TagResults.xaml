@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="ReceiveAutonomousReadingDemodotNet.TagResults"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ReceiveAutonomousReadingDemodotNet"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid x:Name="dgTagResults" Width="Auto" AutoGenerateColumns="False" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="serialNoColumn" Header="#" Binding="{Binding SerialNumber}"/>
+                <DataGridTextColumn x:Name="epcColumn" Header="EPC" Binding="{Binding EPC}"/>
+                <DataGridTextColumn x:Name="tidColumn" Header="TID" Binding="{Binding TID}" Visibility="Collapsed"/>
+                <DataGridTextColumn x:Name="reservedColumn" Header="RESERVED" Binding="{Binding RESERVED}" Visibility="Collapsed"/>
+                <DataGridTextColumn x:Name="userColumn" Header="USER" Binding="{Binding USER}" Visibility="Collapsed"/>
+                <DataGridTextColumn x:Name="antennaColumn" Header="Antenna" Binding="{Binding Antenna}"/>
+                <DataGridTextColumn x:Name="frequencyColumn" Header="Frequency" Binding="{Binding Frequency}" Visibility="Collapsed"/>
+                <DataGridTextColumn x:Name="phaseColumn" Header="Phase" Binding="{Binding Phase}" Visibility="Collapsed"/>
+                <DataGridTextColumn x:Name="readCountColumn" Header="ReadCount" Binding="{Binding ReadCount}"/>
+                <DataGridTextColumn x:Name="timeStampColumn" Header="TimeStamp" Binding="{Binding TimeStamp}"/>
+                <DataGridTextColumn x:Name="temperatureColumn" Header="Temperature" Binding="{Binding Temperature}" Visibility="Collapsed"/>
+                <DataGridTextColumn x:Name="gpioColumn" Header="GPIO" Binding="{Binding GPIO}" Visibility="Collapsed"/>
+                <DataGridTextColumn x:Name="dataColumn" Header="Data" Binding="{Binding Data}" Visibility="Collapsed"/>
+                <DataGridTextColumn x:Name="rssiColumn" Header="RSSI" Binding="{Binding RSSI}" Visibility="Visible"/>
+                <DataGridTextColumn x:Name="protocolColumn" Header="Protocol" Binding="{Binding Protocol}" Visibility="Visible"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
