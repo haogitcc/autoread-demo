@@ -33,7 +33,21 @@ namespace ReceiveAutonomousReadingDemodotNet
 
             RefreshSerial();
 
+            disableWhenConnect(false);
+
             tagdb = new TagDatabase();
+        }
+
+        private void disableWhenConnect(bool disable)
+        {
+            serial_combobox.IsEnabled = !disable;
+            refreshSerial_button.IsEnabled = !disable;
+            receive_button.IsEnabled = disable;
+        }
+
+        private void disableWhenReceive(bool disable)
+        {
+            connect_button.IsEnabled = !disable;
         }
 
         private void RefreshSerial()
@@ -59,12 +73,14 @@ namespace ReceiveAutonomousReadingDemodotNet
                     tagdb.Clear();
                     TagResults.dgTagResults.ItemsSource = null;
                     TagResults.dgTagResults.ItemsSource = tagdb.TagList;
+                    disableWhenConnect(true);
                 }
             }
             else if (connect_button.Content.Equals("Disconnect"))
             {
                 connect_button.Content = "Connect";
                 rt.Disconnect();
+                disableWhenConnect(false);
             }
         }
 
@@ -75,10 +91,11 @@ namespace ReceiveAutonomousReadingDemodotNet
                 if (rt == null)
                     return;
                 receive_button.Content = "Receiving";
-                
+
                 rt.TagRead += Rt_TagRead;
                 rt.StatsListener += Rt_StatsListener;
                 rt.ReceiveData();
+                disableWhenReceive(true);
 
             }
             else if (receive_button.Content.Equals("Receiving"))
@@ -89,6 +106,7 @@ namespace ReceiveAutonomousReadingDemodotNet
                 rt.StopReceiveData();
                 rt.TagRead -= Rt_TagRead;
                 rt.StatsListener -= Rt_StatsListener;
+                disableWhenReceive(false);
             }
         }
 
@@ -98,7 +116,8 @@ namespace ReceiveAutonomousReadingDemodotNet
             {
                 tagdb.Add(e.TagReadData);
                 //Console.WriteLine("--> {0}", e.TagReadData);
-                //TagResults.dgTagResults.ItemsSource = tagdb.TagList;
+                TagResults.dgTagResults.ItemsSource = null;
+                TagResults.dgTagResults.ItemsSource = tagdb.TagList;
             }));
 
             Dispatcher.BeginInvoke(new ThreadStart(delegate ()
@@ -123,6 +142,8 @@ namespace ReceiveAutonomousReadingDemodotNet
             tagdb.Clear();
             uniqueReadCount_label.Content = "0";
             totalReadCount_label.Content = "0";
+            TagResults.dgTagResults.ItemsSource = null;
+            TagResults.dgTagResults.ItemsSource = tagdb.TagList;
         }
 
         private void refreshSerial_button_Click(object sender, RoutedEventArgs e)

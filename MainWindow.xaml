@@ -5,30 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReceiveAutonomousReadingDemodotNet"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" DataContext="{Binding ElementName=TagResults}">
+        Title="ReceiveAutonomousReading Demo v1.0" Height="450" Width="800" DataContext="{Binding ElementName=TagResults}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="79*"/>
+            <ColumnDefinition Width="99*"/>
+            <ColumnDefinition Width="99*"/>
+            <ColumnDefinition Width="99*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="58"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="1" Margin="5">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="1" Margin="5">
             <Button Name="connect_button" Content="Connect" Margin="5" MinWidth="75" Click="connect_button_Click"/>
-            <ComboBox x:Name="serial_combobox" Margin="5" Width="120" VerticalContentAlignment="Center"/>
-            <Button Name="refreshSerial_button" Content="Refresh" Width="75" Margin="5" Click="refreshSerial_button_Click"/>
-            <Button Name="receive_button" Content="StartReceive" Margin="5" MinWidth="85" Click="receive_button_Click"/>
-            <Button Name="clear_button" Content="Clear" Margin="5" MinWidth="75" Click="clear_button_Click" />
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="serial_combobox" Margin="5" Width="120" VerticalContentAlignment="Center" />
+                <Button Name="refreshSerial_button" Content="Refresh" Width="75" Margin="5" Click="refreshSerial_button_Click"/>
+                <Button Name="receive_button" Content="StartReceive" Margin="5" MinWidth="85" Click="receive_button_Click"/>
+                <Button Name="clear_button" Content="Clear" Margin="5" MinWidth="75" Click="clear_button_Click" />
+            </StackPanel>
             <StackPanel Orientation="Vertical">
                 <Label Content="temperature:" Margin="1" MinWidth="75"/>
                 <Label Name="temperature_label" Content="" Margin="1"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="1" Margin="1">
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="4" Grid.RowSpan="1" Margin="1">
             <StackPanel Orientation="Horizontal">
                 <Label Content="unique:" Margin="1" Width="55"/>
                 <Label Name="uniqueReadCount_label" Content="" Margin="1"/>
@@ -38,7 +41,7 @@
                 <Label Name="totalReadCount_label" Content="" Margin="1" />
             </StackPanel>
         </StackPanel>
-        <local:TagResults x:Name="TagResults" Width="Auto" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="1" Margin="5" DataContext="{Binding}"/>
+        <local:TagResults x:Name="TagResults" Width="Auto" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" Margin="5" DataContext="{Binding}"/>
 
     </Grid>
 </Window>
